@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Navbar from './component/nav';
+import CircularText from './component/CircularText';
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,13 +12,14 @@ export default function Home() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const message = [
-      'Hello Palm, I would like to request a table.',
+      'Hello Palm, I would like to make a reservation.',
       `Name: ${data.get('name')}`,
-      `Mobile: ${data.get('phone')}`,
+      `Phone: ${data.get('phone')}`,
+      data.get('email') ? `Email: ${data.get('email')}` : '',
       `Guests: ${data.get('guests')}`,
       `Date: ${data.get('date')}`,
       `Time: ${data.get('time')}`,
-      data.get('notes') ? `Notes: ${data.get('notes')}` : ''
+      data.get('notes') ? `Special Requests: ${data.get('notes')}` : ''
     ].filter(Boolean).join('\n');
     setReservationSent(true);
     window.open(`https://wa.me/919289222302?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
@@ -120,30 +122,30 @@ export default function Home() {
         <div className="container max-w-[1180px] w-[92%] mx-auto features-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <div className="feature p-[30px_25px] max-lg:p-6 border-b sm:border-r border-[#E7DED3] lg:border-b-0">
             <div className="feature-icon text-[#E51B23] text-[22px] mb-2.5">✦</div>
-            <h3 className="text-[15px] font-bold">Seasonal Plates</h3>
+            <h3 className="text-[15px] font-bold">01. Seasonal Flavours</h3>
             <p className="text-[#77716A] text-[14px] leading-[1.65] mt-1">
-              Fresh ingredients and thoughtful cooking.
+              Fresh ingredients, thoughtfully crafted dishes.
             </p>
           </div>
           <div className="feature p-[30px_25px] max-lg:p-6 border-b lg:border-r lg:border-b-0 border-[#E7DED3]">
             <div className="feature-icon text-[#E51B23] text-[22px] mb-2.5">♡</div>
-            <h3 className="text-[15px] font-bold">Warm Service</h3>
+            <h3 className="text-[15px] font-bold">02. Thoughtful Hospitality</h3>
             <p className="text-[#77716A] text-[14px] leading-[1.65] mt-1">
-              Easy hospitality from the moment you arrive.
+              Warm welcomes and service that feels personal.
             </p>
           </div>
           <div className="feature p-[30px_25px] max-lg:p-6 border-b sm:border-r border-[#E7DED3] sm:border-b-0">
             <div className="feature-icon text-[#E51B23] text-[22px] mb-2.5">—</div>
-            <h3 className="text-[15px] font-bold">Private Dining</h3>
+            <h3 className="text-[15px] font-bold">03. Rooftop Gatherings</h3>
             <p className="text-[#77716A] text-[14px] leading-[1.65] mt-1">
-              Spaces made for celebrations and gatherings.
+              The perfect setting for celebrations and special moments.
             </p>
           </div>
           <div className="feature p-[30px_25px] max-lg:p-6">
             <div className="feature-icon text-[#E51B23] text-[22px] mb-2.5">◌</div>
-            <h3 className="text-[15px] font-bold">Open Late</h3>
+            <h3 className="text-[15px] font-bold">04. Evenings That Linger</h3>
             <p className="text-[#77716A] text-[14px] leading-[1.65] mt-1">
-              Come for dinner. Stay for another drink.
+              Come for dinner. Stay for the atmosphere.
             </p>
           </div>
         </div>
@@ -153,50 +155,53 @@ export default function Home() {
           ABOUT
       ========================================================= */}
       <section id="about" className="about py-[120px] max-lg:py-20">
-        <div className="container max-w-[1180px] w-[92%] mx-auto about-grid grid grid-cols-1 lg:grid-cols-2 gap-[60px] lg:gap-[100px] items-center">
+        <div className="container max-w-8xl 2xl:max-w-8xl w-[94%] mx-auto about-grid grid grid-cols-1 lg:grid-cols-2 gap-[60px] lg:gap-[100px] items-center">
           <div className="about-images relative pr-0 lg:pr-[60px]">
             <img
-              src="/photos/DSC09996.JPG"
+              src="/aboutbig.JPG"
               alt="Palm dining"
               loading="lazy"
-              className="about-main w-full lg:w-[90%] h-[420px] lg:h-[530px] object-cover"
+              className="about-main w-full lg:w-[90%] h-[420px] lg:h-[530px] object-cover object-[36%_center] lg:ml-2"
             />
             <img
-              src="/photos/DSC00085.JPG"
+              src="/aboutsmall.JPG"
               alt="Palm food"
               loading="lazy"
               className="about-small absolute right-0 bottom-0 w-[135px] lg:w-[190px] h-[155px] lg:h-[210px] object-cover border-[6px] lg:border-[9px] border-[#FFF9F2]"
             />
-            <div className="about-circle absolute right-2.5 lg:right-[30px] top-5 lg:top-[30px] w-[90px] lg:w-[105px] h-[90px] lg:h-[105px] rounded-full bg-[#E51B23] text-white flex items-center justify-center text-center text-[9px] lg:text-[10px] font-bold tracking-[1px] leading-tight">
-              A LITTLE<br />MORE<br />PALM
+            <div className="absolute right-1 lg:right-[15px] top-2 lg:top-[15px] w-[130px] lg:w-[150px] h-[130px] lg:h-[150px] flex items-center justify-center z-[4] pointer-events-auto">
+              
+
+              {/* Exact React Bits CircularText component */}
+              <CircularText
+                text="A*LITTLE*MORE*PALM*"
+                spinDuration={20}
+                onHover="speedUp"
+                className="!w-[130px] !h-[130px] lg:!w-[150px] lg:!h-[150px] !text-[#E51B23] text-[13px] font-bold"
+              />
             </div>
           </div>
 
           <div className="about-content">
-            <span className="eyebrow text-[#E51B23] text-[13px] max-lg:text-[11px] font-bold tracking-[2px] uppercase block">
-              OUR POINT OF VIEW
+            <span className="eyebrow text-[#E51B23] text-[13px] max-lg:text-[11px] font-medium tracking-[2px] uppercase block">
+              OUR PHILOSOPHY
             </span>
-            <h2 className="section-title font-serif font-normal text-[clamp(46px,5vw,76px)] leading-[0.98] tracking-[-2px] mt-4">
-              Come hungry.<br />
-              <em className="text-[#E51B23] not-italic">Leave happier.</em>
+            <h2 className="section-title font-serif font-normal !text-[clamp(38px,4.2vw,54px)] leading-[1.02] tracking-[-1.5px] mt-4">
+              Come for the food.<br />
+              <em className="text-[#E51B23] not-italic">Stay for the feeling.</em>
             </h2>
-            <p className="section-description text-[#77716A] text-[19px] max-lg:text-[16px] leading-[1.85] mt-6">
-              We believe a restaurant should make every ordinary
-              life feel like an occasion. At Palm, you can drop
-              in for a long lunch, settle into dinner, or linger
-              with your favourite people.
+            <p className="section-description text-[#77716A] !text-[16px] max-lg:!text-[15px] leading-[1.8] mt-5">
+              At The First Floor, every meal is an invitation to slow down and savour the moment. From relaxed lunches to intimate dinners, we bring people together over food worth sharing and conversations worth having.
             </p>
-            <p className="section-description text-[#77716A] text-[19px] max-lg:text-[16px] leading-[1.85] mt-5">
-              Our kitchen keeps things generous and ingredient-led.
-              The rest is a little music, a warm room and something
-              good in your glass.
+            <p className="section-description text-[#77716A] !text-[16px] max-lg:!text-[15px] leading-[1.8] mt-4">
+              Our kitchen brings together bold flavours, thoughtfully prepared dishes, and ingredients chosen with care. Add a welcoming ambience, rooftop charm, and a little more time with your favourite people.
             </p>
             <a
               href="#reservation"
               onClick={closeMenu}
               className="underline-link inline-block text-[14px] font-semibold border-b border-current pb-1 mt-7 hover:text-[#E51B23] transition-colors"
             >
-              Make a reservation →
+              Reserve your table →
             </a>
           </div>
         </div>
@@ -232,57 +237,39 @@ export default function Home() {
           EXPERIENCE
       ========================================================= */}
       <section id="experience" className="experience bg-[#171513] text-white py-[120px] max-lg:py-20">
-        <div className="container max-w-[1180px] w-[92%] mx-auto">
-          <div className="experience-head flex flex-col lg:flex-row justify-between lg:items-end mb-[55px] max-lg:mb-10 gap-5">
+        <div className="container max-w-8xl 2xl:max-w-8xl w-[94%] mx-auto">
+          <div className="experience-head flex flex-col lg:flex-row justify-between lg:items-end mb-[55px] max-lg:mb-10 gap-8">
             <div>
-              <span className="eyebrow text-[#E51B23] text-[13px] font-bold tracking-[2px] uppercase block">
-                THE PALM EXPERIENCE
+              <span className="eyebrow text-[#E51B23] text-[13px] max-lg:text-[11px] font-medium tracking-[2px] uppercase block">
+                THE FIRST FLOOR EXPERIENCE
               </span>
-              <h2 className="section-title font-serif font-normal text-[clamp(46px,5vw,76px)] leading-[0.98] tracking-[-2px] mt-3">
+              <h2 className="section-title font-serif font-normal !text-[clamp(38px,4.2vw,54px)] leading-[1.02] tracking-[-1.5px] mt-4">
                 More than<br />
                 <em className="text-[#E51B23] not-italic">a meal.</em>
               </h2>
             </div>
-            <p className="section-description text-white/60 text-[19px] max-lg:text-[16px] leading-[1.8] max-w-[350px]">
-              From relaxed lunches to late-night celebrations,
-              Palm is made for moments worth staying for.
-            </p>
+            <div className="max-w-[480px] space-y-3">
+              <p className="section-description text-white/70 !text-[16px] max-lg:!text-[15px] leading-[1.8]">
+                From laid-back lunches to rooftop dinners and late-night celebrations, The First Floor brings people together over good food, warm hospitality, and moments worth remembering.
+              </p>
+              
+            </div>
           </div>
 
-          <div className="experience-grid grid grid-cols-1 lg:grid-cols-[1.3fr_1fr_1fr] gap-3.5">
+          <div className="experience-grid !grid grid-cols-1 md:!grid-cols-3 gap-4 lg:gap-5">
             <article className="experience-card relative h-[480px] max-lg:h-[400px] overflow-hidden group">
               <img
-                src="/photos/DSC04826.JPG"
-                alt="Palm dining experience"
+                src="/drink.jpg"
+                alt="Drinks"
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
               <div className="experience-content absolute z-[2] left-[30px] right-[30px] bottom-[30px] max-lg:left-[22px] max-lg:right-[22px] max-lg:bottom-[22px]">
-                <small className="text-[#ff4148] text-[11px] tracking-[2px] block">01 · DINING</small>
-                <h3 className="font-serif text-[33px] max-lg:text-[31px] font-normal my-2">Everyday Dining</h3>
+                <small className="text-[#ff4148] text-[11px] tracking-[2px] block">01 · DRINKS</small>
+                <h3 className="font-serif text-[33px] max-lg:text-[31px] font-normal my-2">Drinks</h3>
                 <p className="text-white/70 text-[14px] leading-[1.7]">
-                  Come for lunch, dinner or something good in your glass.
-                </p>
-                <a href="#reservation" onClick={closeMenu} className="inline-block text-[14px] border-b border-white pb-1 mt-4 hover:text-[#ff4148] hover:border-[#ff4148] transition-colors">
-                  Reserve a table →
-                </a>
-              </div>
-            </article>
-
-            <article className="experience-card relative h-[480px] max-lg:h-[400px] overflow-hidden group">
-              <img
-                src="/photos/DSC04832.JPG"
-                alt="Private dining"
-                loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
-              <div className="experience-content absolute z-[2] left-[30px] right-[30px] bottom-[30px] max-lg:left-[22px] max-lg:right-[22px] max-lg:bottom-[22px]">
-                <small className="text-[#ff4148] text-[11px] tracking-[2px] block">02 · PRIVATE DINING</small>
-                <h3 className="font-serif text-[33px] max-lg:text-[31px] font-normal my-2">Private Tables</h3>
-                <p className="text-white/70 text-[14px] leading-[1.7]">
-                  An intimate setting for special evenings.
+                  Signature cocktails, fine spirits and refreshments curated for every toast.
                 </p>
                 <a href="#reservation" onClick={closeMenu} className="inline-block text-[14px] border-b border-white pb-1 mt-4 hover:text-[#ff4148] hover:border-[#ff4148] transition-colors">
                   Enquire now →
@@ -292,20 +279,40 @@ export default function Home() {
 
             <article className="experience-card relative h-[480px] max-lg:h-[400px] overflow-hidden group">
               <img
-                src="/photos/DSC00103.JPG"
-                alt="Restaurant celebration"
+                src="/food.JPG"
+                alt="Food"
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
               <div className="experience-content absolute z-[2] left-[30px] right-[30px] bottom-[30px] max-lg:left-[22px] max-lg:right-[22px] max-lg:bottom-[22px]">
-                <small className="text-[#ff4148] text-[11px] tracking-[2px] block">03 · CELEBRATIONS</small>
-                <h3 className="font-serif text-[33px] max-lg:text-[31px] font-normal my-2">Good Times</h3>
+                <small className="text-[#ff4148] text-[11px] tracking-[2px] block">02 · FOOD</small>
+                <h3 className="font-serif text-[33px] max-lg:text-[31px] font-normal my-2">Food</h3>
                 <p className="text-white/70 text-[14px] leading-[1.7]">
-                  Birthdays, dinners and evenings to remember.
+                  Thoughtfully crafted plates, bold culinary flavours, and seasonal ingredients.
                 </p>
                 <a href="#reservation" onClick={closeMenu} className="inline-block text-[14px] border-b border-white pb-1 mt-4 hover:text-[#ff4148] hover:border-[#ff4148] transition-colors">
-                  Plan your evening →
+                  Enquire now →
+                </a>
+              </div>
+            </article>
+
+            <article className="experience-card relative h-[480px] max-lg:h-[400px] overflow-hidden group">
+              <img
+                src="/package.JPG"
+                alt="Packages"
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
+              <div className="experience-content absolute z-[2] left-[30px] right-[30px] bottom-[30px] max-lg:left-[22px] max-lg:right-[22px] max-lg:bottom-[22px]">
+                <small className="text-[#ff4148] text-[11px] tracking-[2px] block">03 · PACKAGES</small>
+                <h3 className="font-serif text-[33px] max-lg:text-[31px] font-normal my-2">Packages</h3>
+                <p className="text-white/70 text-[14px] leading-[1.7]">
+                  Tailored dining packages, curated menus and special gatherings made easy.
+                </p>
+                <a href="#reservation" onClick={closeMenu} className="inline-block text-[14px] border-b border-white pb-1 mt-4 hover:text-[#ff4148] hover:border-[#ff4148] transition-colors">
+                  Enquire now →
                 </a>
               </div>
             </article>
@@ -509,57 +516,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* =========================================================
-          SPECIAL OFFER
-      ========================================================= */}
-      <section className="special grid grid-cols-1 lg:grid-cols-2 bg-[#E51B23] text-white">
-        <div className="special-image min-h-[400px] lg:min-h-[570px]">
-          <img
-            src="/photos/DSC00116.JPG"
-            alt="Special Palm dinner"
-            loading="lazy"
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        <div className="special-content p-10 lg:p-20 flex flex-col justify-center">
-          <span className="eyebrow text-white text-[13px] font-bold tracking-[2px] uppercase block">
-            THIS WEEK AT PALM
-          </span>
-          <h2 className="font-serif font-normal text-[clamp(46px,5vw,74px)] leading-[0.95] mt-4">
-            An evening<br />
-            <em className="text-[#171513] not-italic">worth remembering.</em>
-          </h2>
-          <p className="text-white/85 text-[16px] leading-[1.8] max-w-[440px] mt-6">
-            Join us for a seasonal sharing menu,
-            carefully selected drinks and an evening
-            made for taking your time.
-          </p>
-
-          <div className="special-details flex gap-9 mt-9">
-            <div className="special-detail">
-              <strong className="block font-serif text-[29px] font-normal leading-tight">₹2,950</strong>
-              <span className="block text-[10px] tracking-[1px] mt-1 text-white/80">PER PERSON</span>
-            </div>
-            <div className="special-detail">
-              <strong className="block font-serif text-[29px] font-normal leading-tight">5</strong>
-              <span className="block text-[10px] tracking-[1px] mt-1 text-white/80">COURSES</span>
-            </div>
-            <div className="special-detail">
-              <strong className="block font-serif text-[29px] font-normal leading-tight">FRI–SUN</strong>
-              <span className="block text-[10px] tracking-[1px] mt-1 text-white/80">EVENINGS</span>
-            </div>
-          </div>
-
-          <a
-            href="#reservation"
-            onClick={closeMenu}
-            className="dark-button inline-flex items-center justify-center bg-[#171513] hover:bg-white hover:text-[#171513] text-white min-h-[48px] px-7 py-3.5 rounded-full text-[14px] font-semibold transition-all duration-300 w-max mt-9"
-          >
-            Reserve this experience →
-          </a>
-        </div>
-      </section>
 
       {/* =========================================================
           EVENTS
@@ -628,87 +584,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* =========================================================
-          KITCHEN
-      ========================================================= */}
-      <section className="kitchen grid grid-cols-1 lg:grid-cols-2 bg-[#F4EDE3]">
-        <div className="kitchen-image relative min-h-[430px] lg:min-h-[600px]">
-          <img
-            src="/photos/DSC04833.JPG"
-            alt="Palm chef"
-            loading="lazy"
-            className="w-full h-full object-cover"
-          />
-          <div className="kitchen-badge absolute right-5 lg:-right-[50px] bottom-[-45px] lg:top-1/2 lg:-translate-y-1/2 w-[95px] lg:w-[110px] h-[95px] lg:h-[110px] rounded-full bg-[#E51B23] text-white flex items-center justify-center text-center text-[10px] lg:text-[11px] font-bold tracking-[1px] leading-tight z-[3]">
-            FROM<br />THE<br />KITCHEN
-          </div>
-        </div>
-
-        <div className="kitchen-content p-10 lg:p-[90px] flex flex-col justify-center">
-          <span className="eyebrow text-[#E51B23] text-[13px] font-bold tracking-[2px] uppercase block">
-            THE PEOPLE BEHIND PALM
-          </span>
-          <h2 className="section-title font-serif font-normal text-[clamp(46px,5vw,76px)] leading-[0.98] tracking-[-2px] mt-3">
-            Simple food.<br />
-            <em className="text-[#E51B23] not-italic">Serious attention.</em>
-          </h2>
-          <p className="text-[#77716A] text-[19px] max-lg:text-[16px] leading-[1.85] max-w-[450px] mt-7">
-            Our kitchen is built around good ingredients,
-            confident cooking and food that doesn't need
-            to shout to be memorable.
-          </p>
-
-          <div className="kitchen-points grid grid-cols-3 gap-3.5 lg:gap-5 mt-10">
-            <div className="kitchen-point">
-              <strong className="block text-[#E51B23] font-serif text-[30px] max-lg:text-[27px] font-normal leading-none">01</strong>
-              <span className="block text-[10px] tracking-[1px] text-[#292622] mt-1.5 font-medium">FRESH INGREDIENTS</span>
-            </div>
-            <div className="kitchen-point">
-              <strong className="block text-[#E51B23] font-serif text-[30px] max-lg:text-[27px] font-normal leading-none">02</strong>
-              <span className="block text-[10px] tracking-[1px] text-[#292622] mt-1.5 font-medium">SEASONAL MENUS</span>
-            </div>
-            <div className="kitchen-point">
-              <strong className="block text-[#E51B23] font-serif text-[30px] max-lg:text-[27px] font-normal leading-none">03</strong>
-              <span className="block text-[10px] tracking-[1px] text-[#292622] mt-1.5 font-medium">MADE TO SHARE</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================
-          GALLERY
-      ========================================================= */}
-      <section id="gallery" className="gallery pt-[120px] max-lg:pt-20">
-        <div className="gallery-head max-w-[1180px] w-[92%] mx-auto mb-12 flex flex-col sm:flex-row justify-between sm:items-end gap-4">
-          <div>
-            <span className="eyebrow text-[#E51B23] text-[13px] font-bold tracking-[2px] uppercase block">
-              THE PALM MOOD
-            </span>
-            <h2 className="section-title font-serif font-normal text-[clamp(46px,5vw,76px)] leading-[0.98] tracking-[-2px] mt-3">
-              Made for<br />
-              <em className="text-[#E51B23] not-italic">good times.</em>
-            </h2>
-          </div>
-          <p className="text-[#77716A] text-[15px] max-w-[330px]">
-            Bring your people. We'll take care of the rest.
-          </p>
-        </div>
-
-        <div className="gallery-grid grid grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_0.8fr_1.2fr] h-[450px] max-lg:h-auto gap-1.5">
-          <div className="gallery-item overflow-hidden h-[220px] lg:h-full group">
-            <img src="/photos/DSC04827.JPG" alt="Palm meal" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-          </div>
-          <div className="gallery-item overflow-hidden h-[220px] lg:h-full group">
-            <img src="/photos/DSC04898.JPG" alt="Restaurant table" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-          </div>
-          <div className="gallery-item overflow-hidden h-[220px] lg:h-full group">
-            <img src="/photos/DSC09964.JPG" alt="Pasta" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-          </div>
-          <div className="gallery-item overflow-hidden h-[220px] lg:h-full group">
-            <img src="/photos/DSC09993.JPG" alt="Dining room" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-          </div>
-        </div>
-      </section>
+  
 
       {/* =========================================================
           REVIEWS
@@ -766,148 +642,212 @@ export default function Home() {
       </section>
 
       {/* =========================================================
+          GALLERY
+      ========================================================= */}
+      <section id="gallery" className="gallery pt-[120px] max-lg:pt-20">
+        <div className="container max-w-[1180px] w-[92%] mx-auto mb-12 flex flex-col sm:flex-row justify-between sm:items-end gap-4">
+          <div>
+            <span className="eyebrow text-[#E51B23] text-[13px] font-bold tracking-[2px] uppercase block">
+              THE PALM MOOD
+            </span>
+            <h2 className="section-title font-serif font-normal text-[clamp(46px,5vw,76px)] leading-[0.98] tracking-[-2px] mt-3">
+              Made for<br />
+              <em className="text-[#E51B23] not-italic">good times.</em>
+            </h2>
+          </div>
+          <p className="text-[#77716A] text-[15px] max-w-[330px]">
+            Bring your people. We'll take care of the rest.
+          </p>
+        </div>
+
+        <div className="gallery-grid grid grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_0.8fr_1.2fr] h-[450px] max-lg:h-auto gap-1.5">
+          <div className="gallery-item overflow-hidden h-[220px] lg:h-full group">
+            <img src="/photos/DSC04827.JPG" alt="Palm meal" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          </div>
+          <div className="gallery-item overflow-hidden h-[220px] lg:h-full group">
+            <img src="/photos/DSC04898.JPG" alt="Restaurant table" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          </div>
+          <div className="gallery-item overflow-hidden h-[220px] lg:h-full group">
+            <img src="/photos/DSC09964.JPG" alt="Pasta" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          </div>
+          <div className="gallery-item overflow-hidden h-[220px] lg:h-full group">
+            <img src="/photos/DSC09993.JPG" alt="Dining room" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
           RESERVATION
       ========================================================= */}
-      <section id="reservation" className="reservation bg-[#171513] text-white py-[110px] max-lg:py-20">
-        <div className="container max-w-[1180px] w-[92%] mx-auto reservation-grid grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-[60px] lg:gap-[100px] items-center">
-          <div className="reservation-copy">
-            <span className="eyebrow text-[#E51B23] text-[13px] font-bold tracking-[2px] uppercase block">
-              YOUR TABLE AWAITS
-            </span>
-            <h2 className="section-title font-serif font-normal text-[clamp(46px,5vw,76px)] leading-[0.98] tracking-[-2px] mt-3 text-white">
-              Make an<br />
-              <em className="text-[#E51B23] not-italic">evening of it.</em>
-            </h2>
-            <p className="text-white/65 text-[16px] leading-[1.8] max-w-[380px] mt-6">
-              Tell us when you're coming and we'll take care of the rest.
-            </p>
-
-            <div className="reservation-info mt-8 space-y-4">
-              <div>
-                <strong className="block text-[#ff4b52] text-[10px] tracking-[1.5px] uppercase">OPEN DAILY</strong>
-                <span className="text-[14px]">12 PM — 11 PM</span>
-              </div>
-              <div>
-                <strong className="block text-[#ff4b52] text-[10px] tracking-[1.5px] uppercase">CALL</strong>
-                <span className="text-[14px]">+91 92892 22302</span>
-              </div>
-              <div>
-                <strong className="block text-[#ff4b52] text-[10px] tracking-[1.5px] uppercase">LOCATION</strong>
-                <span className="text-[14px]">Sainik Farms, New Delhi</span>
-              </div>
-            </div>
+      <section id="reservation" className="reservation py-20 lg:py-28 bg-[#FCFAF7] text-[#171513]">
+        <div className="container max-w-[1240px] w-[92%] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
+          {/* Left Column: Atmospheric Table Photo */}
+          <div className="reservation-image overflow-hidden min-h-[420px] lg:min-h-[580px] h-full shadow-sm">
+            <img
+              src="/photos/DSC04898.JPG"
+              alt="Restaurant table reservation"
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
           </div>
 
-          <form
-            id="reservationForm"
-            onSubmit={submitReservation}
-            className="reservation-form bg-white text-[#171513] p-9 shadow-lg"
-          >
-            <div className="form-row grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-              <div className="form-field border-b border-[#E7DED3] pb-2">
-                <label htmlFor="guestName" className="block text-[12px] tracking-[1px] font-semibold mb-2">
-                  YOUR NAME
-                </label>
-                <input
-                  id="guestName"
-                  name="name"
-                  type="text"
-                  placeholder="Full name"
-                  required
-                  className="w-full bg-transparent text-[16px] outline-none text-[#171513]"
-                />
-              </div>
+          {/* Right Column: Form */}
+          <div className="reservation-form-wrap flex flex-col justify-center lg:py-4">
+            <h2 className="font-serif italic font-normal text-[36px] sm:text-[44px] text-[#2C1810] tracking-tight leading-tight">
+              Make a Reservation
+            </h2>
+            <p className="text-[#6B655E] text-[15px] sm:text-[16px] leading-[1.6] mt-3 mb-8">
+              Reserve your table and enjoy an unforgettable dining experience, thoughtfully prepared for every occasion.
+            </p>
 
-              <div className="form-field border-b border-[#E7DED3] pb-2">
-                <label htmlFor="guestPhone" className="block text-[12px] tracking-[1px] font-semibold mb-2">
-                  MOBILE
-                </label>
-                <input
-                  id="guestPhone"
-                  name="phone"
-                  type="tel"
-                  placeholder="+91"
-                  required
-                  className="w-full bg-transparent text-[16px] outline-none text-[#171513]"
-                />
-              </div>
-            </div>
-
-            <div className="form-row grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-              <div className="form-field border-b border-[#E7DED3] pb-2">
-                <label htmlFor="guestDate" className="block text-[12px] tracking-[1px] font-semibold mb-2">
-                  DATE
-                </label>
-                <input
-                  id="guestDate"
-                  name="date"
-                  type="date"
-                  required
-                  className="w-full bg-transparent text-[16px] outline-none text-[#171513]"
-                />
-              </div>
-
-              <div className="form-field border-b border-[#E7DED3] pb-2">
-                <label htmlFor="guestTime" className="block text-[12px] tracking-[1px] font-semibold mb-2">
-                  TIME
-                </label>
-                <input
-                  id="guestTime"
-                  name="time"
-                  type="time"
-                  required
-                  className="w-full bg-transparent text-[16px] outline-none text-[#171513]"
-                />
-              </div>
-            </div>
-
-            <div className="form-row grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-              <div className="form-field border-b border-[#E7DED3] pb-2">
-                <label htmlFor="guestCount" className="block text-[12px] tracking-[1px] font-semibold mb-2">
-                  GUESTS
-                </label>
-                <select id="guestCount" name="guests" className="w-full bg-transparent text-[16px] outline-none text-[#171513]">
-                  <option value="2 Guests">2 Guests</option>
-                  <option value="3 Guests">3 Guests</option>
-                  <option value="4 Guests">4 Guests</option>
-                  <option value="5 Guests">5 Guests</option>
-                  <option value="6+ Guests">6+ Guests</option>
-                </select>
-              </div>
-
-              <div className="form-field border-b border-[#E7DED3] pb-2">
-                <label htmlFor="occasion" className="block text-[12px] tracking-[1px] font-semibold mb-2">
-                  OCCASION
-                </label>
-                <select id="occasion" name="occasion" className="w-full bg-transparent text-[16px] outline-none text-[#171513]">
-                  <option value="Dinner">Dinner</option>
-                  <option value="Birthday">Birthday</option>
-                  <option value="Date Night">Date Night</option>
-                  <option value="Business Dinner">Business Dinner</option>
-                  <option value="Celebration">Celebration</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="form-field form-full border-b border-[#E7DED3] pb-2 mb-6">
-              <label htmlFor="specialRequest" className="block text-[12px] tracking-[1px] font-semibold mb-2">
-                SPECIAL REQUEST
-              </label>
-              <textarea
-                id="specialRequest"
-                name="notes"
-                placeholder="Dietary requirements or anything else we should know..."
-                className="w-full min-h-[60px] bg-transparent text-[16px] outline-none resize-y text-[#171513]"
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              className="red-button form-submit w-full bg-[#E51B23] hover:bg-[#B90F16] text-white py-4 px-6 rounded-full text-[14px] font-semibold transition-all duration-300 cursor-pointer"
+            <form
+              id="reservationForm"
+              onSubmit={submitReservation}
+              className="reservation-form space-y-5"
             >
-              Continue on WhatsApp →
-            </button>
-          </form>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-5">
+                {/* Guests */}
+                <div>
+                  <label htmlFor="guestCount" className="block text-[13px] font-medium text-[#77716A] mb-2">
+                    Guests
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="guestCount"
+                      name="guests"
+                      defaultValue="1 Person"
+                      className="w-full bg-[#F6F5F2] hover:bg-[#F0EEE9] focus:bg-white border border-transparent focus:border-[#D5CEC5] text-[#171513] text-[14px] py-3.5 px-4 pr-10 outline-none appearance-none cursor-pointer transition-all"
+                    >
+                      <option value="1 Person">1 Person</option>
+                      <option value="2 People">2 People</option>
+                      <option value="3 People">3 People</option>
+                      <option value="4 People">4 People</option>
+                      <option value="5 People">5 People</option>
+                      <option value="6+ People">6+ People</option>
+                    </select>
+                    <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#77716A] text-[11px]">
+                      ▼
+                    </span>
+                  </div>
+                </div>
+
+                {/* Date */}
+                <div>
+                  <label htmlFor="guestDate" className="block text-[13px] font-medium text-[#77716A] mb-2">
+                    Date
+                  </label>
+                  <input
+                    id="guestDate"
+                    name="date"
+                    type="date"
+                    required
+                    placeholder="mm/dd/yyyy"
+                    className="w-full bg-[#F6F5F2] hover:bg-[#F0EEE9] focus:bg-white border border-transparent focus:border-[#D5CEC5] text-[#171513] text-[14px] py-3.5 px-4 outline-none transition-all placeholder:text-[#A09A93]"
+                  />
+                </div>
+
+                {/* Time */}
+                <div>
+                  <label htmlFor="guestTime" className="block text-[13px] font-medium text-[#77716A] mb-2">
+                    Time
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="guestTime"
+                      name="time"
+                      defaultValue="11.00 AM"
+                      className="w-full bg-[#F6F5F2] hover:bg-[#F0EEE9] focus:bg-white border border-transparent focus:border-[#D5CEC5] text-[#171513] text-[14px] py-3.5 px-4 pr-10 outline-none appearance-none cursor-pointer transition-all"
+                    >
+                      <option value="11.00 AM">11.00 AM</option>
+                      <option value="12.00 PM">12.00 PM</option>
+                      <option value="01.00 PM">01.00 PM</option>
+                      <option value="02.00 PM">02.00 PM</option>
+                      <option value="03.00 PM">03.00 PM</option>
+                      <option value="07.00 PM">07.00 PM</option>
+                      <option value="08.00 PM">08.00 PM</option>
+                      <option value="09.00 PM">09.00 PM</option>
+                      <option value="10.00 PM">10.00 PM</option>
+                    </select>
+                    <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#77716A] text-[11px]">
+                      ▼
+                    </span>
+                  </div>
+                </div>
+
+                {/* Full Name */}
+                <div>
+                  <label htmlFor="guestName" className="block text-[13px] font-medium text-[#77716A] mb-2">
+                    Full Name
+                  </label>
+                  <input
+                    id="guestName"
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Enter Your Name"
+                    className="w-full bg-[#F6F5F2] hover:bg-[#F0EEE9] focus:bg-white border border-transparent focus:border-[#D5CEC5] text-[#171513] text-[14px] py-3.5 px-4 outline-none transition-all placeholder:text-[#A09A93]"
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label htmlFor="guestEmail" className="block text-[13px] font-medium text-[#77716A] mb-2">
+                    Email
+                  </label>
+                  <input
+                    id="guestEmail"
+                    name="email"
+                    type="email"
+                    placeholder="jane@framer.com"
+                    className="w-full bg-[#F6F5F2] hover:bg-[#F0EEE9] focus:bg-white border border-transparent focus:border-[#D5CEC5] text-[#171513] text-[14px] py-3.5 px-4 outline-none transition-all placeholder:text-[#A09A93]"
+                  />
+                </div>
+
+                {/* Phone */}
+                <div>
+                  <label htmlFor="guestPhone" className="block text-[13px] font-medium text-[#77716A] mb-2">
+                    Phone
+                  </label>
+                  <input
+                    id="guestPhone"
+                    name="phone"
+                    type="tel"
+                    required
+                    placeholder="Phone Number"
+                    className="w-full bg-[#F6F5F2] hover:bg-[#F0EEE9] focus:bg-white border border-transparent focus:border-[#D5CEC5] text-[#171513] text-[14px] py-3.5 px-4 outline-none transition-all placeholder:text-[#A09A93]"
+                  />
+                </div>
+              </div>
+
+              {/* Special Requests */}
+              <div>
+                <label htmlFor="specialRequest" className="block text-[13px] font-medium text-[#77716A] mb-2">
+                  Special Requests
+                </label>
+                <textarea
+                  id="specialRequest"
+                  name="notes"
+                  rows={3}
+                  placeholder="Let us know about dietary preferences, celebrations, allergies, or any special requests."
+                  className="w-full bg-[#F6F5F2] hover:bg-[#F0EEE9] focus:bg-white border border-transparent focus:border-[#D5CEC5] text-[#171513] text-[14px] p-4 outline-none resize-y transition-all placeholder:text-[#A09A93] leading-relaxed"
+                ></textarea>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="w-full bg-[#271511] hover:bg-[#150B09] text-white py-4 px-6 text-[15px] font-medium tracking-wide transition-all duration-300 cursor-pointer shadow-sm hover:shadow"
+              >
+                Submit
+              </button>
+
+              {reservationSent && (
+                <p className="mt-3 text-center text-[13px] text-green-700 font-medium">
+                  Thank you! Your reservation request has been opened on WhatsApp.
+                </p>
+              )}
+            </form>
+          </div>
         </div>
       </section>
 
@@ -918,13 +858,13 @@ export default function Home() {
         <div className="container max-w-[1180px] w-[92%] mx-auto location-grid grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] min-h-[500px] bg-[#E51B23] text-white shadow-lg overflow-hidden">
           <div className="location-image relative min-h-[350px] lg:min-h-[500px] p-0 overflow-hidden">
             <iframe
-              title="Google Map for Sainik Farms, New Delhi"
+              title="Google Map for The First Floor, One Golden Mile, Netaji Nagar, New Delhi"
               width="100%"
               height="100%"
               style={{ border: 0, position: 'absolute', top: 0, left: 0 }}
               loading="lazy"
               allowFullScreen
-              src="https://www.google.com/maps?q=Sainik+Farms,+New+Delhi&output=embed"
+              src="https://www.google.com/maps?q=The+First+Floor,+One+Golden+Mile,+Block+A,+Netaji+Nagar,+New+Delhi,+Delhi+110066&output=embed"
             ></iframe>
           </div>
 
@@ -937,8 +877,9 @@ export default function Home() {
               <em className="text-[#171513] not-italic">is waiting.</em>
             </h2>
             <p className="text-white/85 text-[16px] leading-[1.9] mt-6">
-              Sainik Farms<br />
-              New Delhi, India
+              The First Floor, One Golden Mile<br />
+              Block A, Netaji Nagar<br />
+              New Delhi, Delhi 110066
               <br /><br />
               +91 92892 22302<br />
               thepalm192@gmail.com
@@ -949,7 +890,7 @@ export default function Home() {
 
             <div className="location-buttons flex flex-wrap gap-4 mt-8">
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Sainik+Farms+New+Delhi"
+                href="https://www.google.com/maps/dir//The+First+Floor,+One+Golden+Mile,+Block+A,+Netaji+Nagar,+New+Delhi,+Delhi,+110066/@26.6882664,77.8938889,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x390d1dab1258837f:0xc27d1fd707643722!2m2!1d77.1858787!2d28.570659?entry=ttu"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white text-[#171513] hover:bg-[#171513] hover:text-white px-5 py-3 rounded-full text-[13px] font-semibold transition-colors"
@@ -968,98 +909,100 @@ export default function Home() {
         </div>
       </section>
 
-      {/* =========================================================
-          FINAL CTA
-      ========================================================= */}
-      <section className="final-cta py-[120px] max-lg:py-20 text-center bg-[#FFF9F2]">
-        <div className="container max-w-[1180px] w-[92%] mx-auto">
-          <span className="eyebrow text-[#E51B23] text-[13px] font-bold tracking-[2px] uppercase block">
-            THE PALM
-          </span>
-          <h2 className="font-serif font-normal text-[clamp(46px,7vw,94px)] leading-[0.9] tracking-[-3px] mt-4">
-            Come hungry.<br />
-            <em className="text-[#E51B23] not-italic">Leave happier.</em>
-          </h2>
-          <p className="text-[#77716A] text-[16px] leading-[1.8] max-w-[450px] mx-auto my-6">
-            Good food, generous tables and evenings that are better when shared.
-          </p>
-          <a
-            href="#reservation"
-            onClick={closeMenu}
-            className="red-button inline-flex items-center justify-center bg-[#E51B23] hover:bg-[#B90F16] text-white px-7 py-4 rounded-full text-[14px] font-semibold transition-all duration-300 hover:-translate-y-0.5"
-          >
-            Reserve your table →
-          </a>
-        </div>
-      </section>
 
       {/* =========================================================
           FOOTER
       ========================================================= */}
-      <footer className="footer bg-[#171513] text-white pt-[75px] pb-[25px]">
-        <div className="container max-w-[1180px] w-[92%] mx-auto">
-          <div className="footer-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] gap-10 lg:gap-[50px]">
+      <footer className="footer bg-[#FFF9F2] text-[#171513] pt-20 pb-16 border-t border-[#E7DED3]">
+        <div className="container max-w-[1240px] w-[92%] mx-auto">
+          {/* Top Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.3fr_1.1fr_1.4fr_auto] gap-x-12 gap-y-8 items-start">
             <div>
-              <div className="footer-logo font-serif text-[38px] italic">
-                <img src="/logo-light.png" alt="Palm Restaurant Logo" className="w-[250px] h-auto block" />
-              </div>
-              <p className="footer-description text-white/50 text-[14px] leading-[1.7] max-w-[250px] mt-4">
-                Seasonal plates, long evenings and always-warm hospitality in New Delhi.
+              <a
+                href="#home"
+                onClick={closeMenu}
+                className="inline-flex items-start gap-1 group font-sans"
+              >
+                <span className="text-[38px] sm:text-[44px] font-bold tracking-tight text-[#171513] leading-none lowercase">
+                  palm
+                </span>
+                <span className="text-[20px] text-[#77716A] leading-none group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+                  ↗
+                </span>
+              </a>
+            </div>
+
+            <div>
+              <span className="block text-[11px] font-semibold tracking-[1.5px] uppercase text-[#77716A] mb-2">
+                CONTACT US
+              </span>
+              <a
+                href="tel:+919289222302"
+                className="text-[20px] sm:text-[22px] font-semibold text-[#171513] tracking-tight hover:text-[#E51B23] transition-colors whitespace-nowrap"
+              >
+                +91 92892 22302
+              </a>
+            </div>
+
+            <div>
+              <span className="block text-[11px] font-semibold tracking-[1.5px] uppercase text-[#77716A] mb-2">
+                ADDRESS
+              </span>
+              <a
+                href="https://www.google.com/maps/dir//The+First+Floor,+One+Golden+Mile,+Block+A,+Netaji+Nagar,+New+Delhi,+Delhi,+110066/@26.6882664,77.8938889,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x390d1dab1258837f:0xc27d1fd707643722!2m2!1d77.1858787!2d28.570659?entry=ttu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[15px] sm:text-[17px] font-medium text-[#171513] leading-[1.4] hover:text-[#E51B23] transition-colors block max-w-[340px]"
+              >
+                The First Floor, One Golden Mile, Block A, Netaji Nagar, New Delhi 110066
+              </a>
+            </div>
+
+            <div className="hidden lg:block w-[140px]" />
+          </div>
+
+          {/* Bottom Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.3fr_1.1fr_1.4fr_auto] gap-x-12 gap-y-8 items-end mt-16 sm:mt-20">
+            <nav className="flex items-center flex-wrap gap-3 sm:gap-4 text-[14px] sm:text-[15px] font-medium text-[#171513]">
+              <a href="#home" onClick={closeMenu} className="hover:text-[#E51B23] transition-colors">
+                Home
+              </a>
+              <span className="text-[#C8BFB5] select-none">/</span>
+              <a href="#reservation" onClick={closeMenu} className="hover:text-[#E51B23] transition-colors">
+                Book a Table
+              </a>
+              <span className="text-[#C8BFB5] select-none">/</span>
+              <a href="#menu" onClick={closeMenu} className="hover:text-[#E51B23] transition-colors">
+                Menu
+              </a>
+            </nav>
+
+            <div>
+              <span className="block text-[11px] font-semibold tracking-[1.5px] uppercase text-[#77716A] mb-1.5">
+                EMAIL
+              </span>
+              <a
+                href="mailto:thepalm192@gmail.com"
+                className="text-[16px] sm:text-[18px] font-medium text-[#171513] hover:text-[#E51B23] transition-colors"
+              >
+                thepalm192@gmail.com
+              </a>
+            </div>
+
+            <div>
+              <span className="block text-[11px] font-semibold tracking-[1.5px] uppercase text-[#77716A] mb-1.5">
+                OPENING HOURS
+              </span>
+              <p className="text-[17px] sm:text-[19px] font-medium text-[#171513]">
+                12pm—11pm
               </p>
             </div>
 
-            <div>
-              <h4 className="text-white text-[11px] tracking-[1.5px] uppercase font-bold mb-4">EXPLORE</h4>
-              <div className="space-y-2">
-                <a href="#about" onClick={closeMenu} className="block text-white/55 hover:text-[#ff4a50] text-[14px] transition-colors">
-                  About
-                </a>
-                <a href="#menu" onClick={closeMenu} className="block text-white/55 hover:text-[#ff4a50] text-[14px] transition-colors">
-                  Menu
-                </a>
-                <a href="#experience" onClick={closeMenu} className="block text-white/55 hover:text-[#ff4a50] text-[14px] transition-colors">
-                  Experience
-                </a>
-                <a href="#events" onClick={closeMenu} className="block text-white/55 hover:text-[#ff4a50] text-[14px] transition-colors">
-                  What's On
-                </a>
-              </div>
+            <div className="lg:text-right pt-2 lg:pt-0">
+              <span className="text-[13px] text-[#77716A] whitespace-nowrap">
+                © 2026 — Copyright
+              </span>
             </div>
-
-            <div>
-              <h4 className="text-white text-[11px] tracking-[1.5px] uppercase font-bold mb-4">FIND US</h4>
-              <div className="space-y-2">
-                <a href="#location" onClick={closeMenu} className="block text-white/55 hover:text-[#ff4a50] text-[14px] transition-colors">
-                  Sainik Farms
-                </a>
-                <a href="tel:+919289222302" className="block text-white/55 hover:text-[#ff4a50] text-[14px] transition-colors">
-                  +91 92892 22302
-                </a>
-                <a href="mailto:thepalm192@gmail.com" className="block text-white/55 hover:text-[#ff4a50] text-[14px] transition-colors">
-                  Email us
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-white text-[11px] tracking-[1.5px] uppercase font-bold mb-4">FOLLOW</h4>
-              <div className="space-y-2">
-                <a href="#" className="block text-white/55 hover:text-[#ff4a50] text-[14px] transition-colors">
-                  Instagram
-                </a>
-                <a href="#" className="block text-white/55 hover:text-[#ff4a50] text-[14px] transition-colors">
-                  Facebook
-                </a>
-                <a href="#" className="block text-white/55 hover:text-[#ff4a50] text-[14px] transition-colors">
-                  Google
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="footer-bottom flex flex-col sm:flex-row justify-between border-t border-white/10 mt-14 pt-5 text-white/35 text-[11px] gap-2">
-            <span>© 2026 PALM RESTAURANT</span>
-            <span>Made for good times.</span>
           </div>
         </div>
       </footer>

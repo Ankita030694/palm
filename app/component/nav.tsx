@@ -32,7 +32,7 @@ export default function Navbar({
       ========================================================= */}
       <div className="top-bar w-full h-[34px] bg-[#171513] text-white">
         <div className="top-bar-inner max-w-[1180px] w-[92%] h-full mx-auto flex items-center justify-between text-[12px] tracking-[0.6px]">
-          <span>SAINIK FARMS · NEW DELHI</span>
+          <span>ONE GOLDEN MILE · NETAJI NAGAR, NEW DELHI</span>
           <span>+91 92892 22302 &nbsp; · &nbsp; OPEN DAILY 12PM — 11PM</span>
         </div>
       </div>
