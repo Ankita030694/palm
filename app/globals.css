@@ -1,3 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-red: #E51B23;
+  --color-brand-red-dark: #B90F16;
+  --color-brand-red-light: #FFF0F0;
+  --color-brand-cream: #FFF9F2;
+  --color-brand-cream-dark: #F4EDE3;
+  --color-brand-dark: #171513;
+  --color-brand-dark-2: #24201D;
+  --color-brand-text: #292622;
+  --color-brand-muted: #77716A;
+  --color-brand-border: #E7DED3;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "DM Sans", Arial, sans-serif;
+}
+
 /* =========================================================
    PALM RESTAURANT
    COMPLETE RESPONSIVE SINGLE PAGE
@@ -353,7 +370,8 @@ textarea {
 ========================================================= */
 
 .hero {
-    min-height: 850px;
+    height: 100dvh;
+    min-height: 600px;
 
     position: relative;
 
@@ -2012,7 +2030,8 @@ textarea {
     /* HERO */
 
     .hero {
-        min-height: 720px;
+        height: 100dvh;
+        min-height: 560px;
 
         align-items: center;
     }
