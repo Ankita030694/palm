@@ -1,13 +1,19 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Palm — A table worth taking time for',
-  description: 'Palm is a contemporary restaurant in New Delhi.',
+  title: 'The First Floor | Rooftop Dining & Restaurant in New Delhi',
+  description: 'Discover The First Floor, a rooftop dining destination in New Delhi for thoughtfully crafted dishes, refreshing drinks, warm hospitality, and memorable dining experiences.',
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   }
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({
@@ -16,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className="w-full max-w-full overflow-x-hidden">
+      <body className="w-full max-w-full overflow-x-hidden">{children}</body>
     </html>
   );
 }
