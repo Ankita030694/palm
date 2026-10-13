@@ -188,7 +188,7 @@ export default function Navbar({
               >
                 <div className="bg-white text-[#171513] rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.18)] border border-[#E7DED3] p-2 flex flex-col gap-1">
                   <a
-                    href="/drinks.pdf"
+                    href="/3_FOOD%20MENU-1_merged.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setDropdownOpen(false)}
@@ -394,7 +394,7 @@ export default function Navbar({
                 {mobileMenuExpanded && (
                   <div className="mt-2 mb-2 flex flex-col gap-2 pl-2">
                     <a
-                      href="/drinks.pdf"
+                      href="/3_FOOD%20MENU-1_merged.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={handleClose}

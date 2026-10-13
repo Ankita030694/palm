@@ -57,7 +57,7 @@ const partyImages = [
 ];
 
 const menuCategories = [
-  { id: 'food' as const, label: 'Food Menu', pdf: '/drinks.pdf' },
+  { id: 'food' as const, label: 'Food Menu', pdf: '/3_FOOD%20MENU-1_merged.pdf' },
   { id: 'drinks' as const, label: 'Drink Menu', pdf: '/drinks.pdf' },
   { id: 'party' as const, label: 'Party Menu', pdf: '/party.pdf' },
 ];
@@ -389,7 +389,7 @@ export default function Home() {
                   Thoughtfully crafted plates, bold culinary flavours, and seasonal ingredients.
                 </p>
                 <a
-                  href="/drinks.pdf"
+                  href="/3_FOOD%20MENU-1_merged.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block text-[14px] border-b border-white pb-1 mt-4 hover:text-[#A2C4AB] hover:border-[#A2C4AB] transition-colors"
