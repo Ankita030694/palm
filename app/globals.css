@@ -47,14 +47,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-img, video {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Base link reset */
 @layer base {
+  img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
   a {
     text-decoration: none;
   }

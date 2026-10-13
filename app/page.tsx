@@ -266,7 +266,7 @@ export default function Home() {
 
               {/* Exact React Bits CircularText component */}
               <CircularText
-                text="A*LITTLE*MORE*PALM*"
+                text="A LITTLE MORE*FLAVOUR*" 
                 spinDuration={20}
                 onHover="speedUp"
                 className="!w-[130px] !h-[130px] lg:!w-[150px] lg:!h-[150px] !text-[#2eff5e] text-[13px] font-bold"
@@ -677,13 +677,15 @@ export default function Home() {
             {[...galleryImages, ...galleryImages].map((imgSrc, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-[240px] sm:w-[300px] md:w-[360px] h-[300px] sm:h-[360px] md:h-[420px] overflow-hidden group shadow-sm bg-[#F6F5F2]"
+                className="flex-shrink-0 w-[240px] sm:w-[285px] md:w-[330px] aspect-[3/4] overflow-hidden group shadow-sm bg-[#F6F5F2]"
+                style={{ aspectRatio: '3 / 4' }}
               >
                 <img
                   src={imgSrc}
                   alt={`Palm Restaurant moment ${(index % galleryImages.length) + 1}`}
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </div>
             ))}
@@ -724,7 +726,7 @@ export default function Home() {
               New Delhi, Delhi 110066
               <br /><br />
               <a href="tel:+919599280444" className="hover:underline">9599280444</a> | <a href="tel:+919599280666" className="hover:underline">9599280666</a><br />
-              thepalm192@gmail.com
+              thefirstfloordelhi@gmail.com
               <br /><br />
               Open daily<br />
               12:00 PM — 11:00 PM
@@ -834,10 +836,10 @@ export default function Home() {
                 EMAIL
               </span>
               <a
-                href="mailto:thepalm192@gmail.com"
+                href="mailto:thefirstfloordelhi@gmail.com"
                 className="text-[14px] sm:text-[15px] font-medium text-[#171513] hover:text-[#1C2D20] transition-colors"
               >
-                thepalm192@gmail.com
+                thefirstfloordelhi@gmail.com
               </a>
             </div>
 
@@ -856,7 +858,7 @@ export default function Home() {
               </span>
             </div>
           </div>
-        </div>
+        </div> 
       </footer>
     </main>
   );
