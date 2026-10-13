@@ -118,7 +118,7 @@ export default function Home() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <main className={`min-h-screen bg-[#FFFFFF] text-[#292622] font-sans ${menuOpen ? 'menu-open overflow-hidden' : ''}`}>
+    <main className="min-h-screen bg-[#FFFFFF] text-[#292622] font-sans">
 
       {/* Navbar Component */}
       <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} closeMenu={closeMenu} />
@@ -614,7 +614,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-6 mb-16 md:mb-20">
             <div>
               <span className="eyebrow text-[#1C2D20] text-[13px] font-bold tracking-[2px] uppercase block">
-                THE PALM MOOD
+                THE FIRST FLOOR FEELING
               </span>
               <h2 className="section-title font-serif font-normal text-[clamp(46px,5vw,76px)] leading-[0.98] tracking-[-2px] mt-3">
                 Made for<br />
